@@ -1,0 +1,250 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.song.export.dao.UserMapper">
+  <resultMap id="BaseResultMap" type="com.song.export.model.bean.User">
+    <constructor>
+      <idArg column="ID" javaType="java.lang.Long" jdbcType="BIGINT" />
+      <arg column="userName" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="password" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="nickName" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="trueName" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="tel" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="address" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="email" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="lastOper" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="pwShow" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="applyDate" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+      <arg column="createDate" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+      <arg column="updateDate" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+      <arg column="expireDate" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+      <arg column="status" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="colorSchemaId" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="attentionCount" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="remark" javaType="java.lang.String" jdbcType="VARCHAR" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List">
+    ID, userName, password, nickName, trueName, tel, address, email, lastOper, pwShow, 
+    applyDate, createDate, updateDate, expireDate, status, colorSchemaId, attentionCount, 
+    remark
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from user
+    where ID = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from user
+    where ID = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.song.export.model.bean.User">
+    insert into user (ID, userName, password, 
+      nickName, trueName, tel, 
+      address, email, lastOper, 
+      pwShow, applyDate, createDate, 
+      updateDate, expireDate, status, 
+      colorSchemaId, attentionCount, remark
+      )
+    values (#{id,jdbcType=BIGINT}, #{username,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, 
+      #{nickname,jdbcType=VARCHAR}, #{truename,jdbcType=VARCHAR}, #{tel,jdbcType=VARCHAR}, 
+      #{address,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR}, #{lastoper,jdbcType=VARCHAR}, 
+      #{pwshow,jdbcType=VARCHAR}, #{applydate,jdbcType=TIMESTAMP}, #{createdate,jdbcType=TIMESTAMP}, 
+      #{updatedate,jdbcType=TIMESTAMP}, #{expiredate,jdbcType=TIMESTAMP}, #{status,jdbcType=INTEGER}, 
+      #{colorschemaid,jdbcType=INTEGER}, #{attentioncount,jdbcType=INTEGER}, #{remark,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.song.export.model.bean.User">
+    insert into user
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        ID,
+      </if>
+      <if test="username != null">
+        userName,
+      </if>
+      <if test="password != null">
+        password,
+      </if>
+      <if test="nickname != null">
+        nickName,
+      </if>
+      <if test="truename != null">
+        trueName,
+      </if>
+      <if test="tel != null">
+        tel,
+      </if>
+      <if test="address != null">
+        address,
+      </if>
+      <if test="email != null">
+        email,
+      </if>
+      <if test="lastoper != null">
+        lastOper,
+      </if>
+      <if test="pwshow != null">
+        pwShow,
+      </if>
+      <if test="applydate != null">
+        applyDate,
+      </if>
+      <if test="createdate != null">
+        createDate,
+      </if>
+      <if test="updatedate != null">
+        updateDate,
+      </if>
+      <if test="expiredate != null">
+        expireDate,
+      </if>
+      <if test="status != null">
+        status,
+      </if>
+      <if test="colorschemaid != null">
+        colorSchemaId,
+      </if>
+      <if test="attentioncount != null">
+        attentionCount,
+      </if>
+      <if test="remark != null">
+        remark,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="username != null">
+        #{username,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null">
+        #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="nickname != null">
+        #{nickname,jdbcType=VARCHAR},
+      </if>
+      <if test="truename != null">
+        #{truename,jdbcType=VARCHAR},
+      </if>
+      <if test="tel != null">
+        #{tel,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null">
+        #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null">
+        #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="lastoper != null">
+        #{lastoper,jdbcType=VARCHAR},
+      </if>
+      <if test="pwshow != null">
+        #{pwshow,jdbcType=VARCHAR},
+      </if>
+      <if test="applydate != null">
+        #{applydate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createdate != null">
+        #{createdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatedate != null">
+        #{updatedate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="expiredate != null">
+        #{expiredate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="colorschemaid != null">
+        #{colorschemaid,jdbcType=INTEGER},
+      </if>
+      <if test="attentioncount != null">
+        #{attentioncount,jdbcType=INTEGER},
+      </if>
+      <if test="remark != null">
+        #{remark,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.song.export.model.bean.User">
+    update user
+    <set>
+      <if test="username != null">
+        userName = #{username,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null">
+        password = #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="nickname != null">
+        nickName = #{nickname,jdbcType=VARCHAR},
+      </if>
+      <if test="truename != null">
+        trueName = #{truename,jdbcType=VARCHAR},
+      </if>
+      <if test="tel != null">
+        tel = #{tel,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null">
+        address = #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null">
+        email = #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="lastoper != null">
+        lastOper = #{lastoper,jdbcType=VARCHAR},
+      </if>
+      <if test="pwshow != null">
+        pwShow = #{pwshow,jdbcType=VARCHAR},
+      </if>
+      <if test="applydate != null">
+        applyDate = #{applydate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createdate != null">
+        createDate = #{createdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatedate != null">
+        updateDate = #{updatedate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="expiredate != null">
+        expireDate = #{expiredate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="status != null">
+        status = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="colorschemaid != null">
+        colorSchemaId = #{colorschemaid,jdbcType=INTEGER},
+      </if>
+      <if test="attentioncount != null">
+        attentionCount = #{attentioncount,jdbcType=INTEGER},
+      </if>
+      <if test="remark != null">
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.song.export.model.bean.User">
+    update user
+    set userName = #{username,jdbcType=VARCHAR},
+      password = #{password,jdbcType=VARCHAR},
+      nickName = #{nickname,jdbcType=VARCHAR},
+      trueName = #{truename,jdbcType=VARCHAR},
+      tel = #{tel,jdbcType=VARCHAR},
+      address = #{address,jdbcType=VARCHAR},
+      email = #{email,jdbcType=VARCHAR},
+      lastOper = #{lastoper,jdbcType=VARCHAR},
+      pwShow = #{pwshow,jdbcType=VARCHAR},
+      applyDate = #{applydate,jdbcType=TIMESTAMP},
+      createDate = #{createdate,jdbcType=TIMESTAMP},
+      updateDate = #{updatedate,jdbcType=TIMESTAMP},
+      expireDate = #{expiredate,jdbcType=TIMESTAMP},
+      status = #{status,jdbcType=INTEGER},
+      colorSchemaId = #{colorschemaid,jdbcType=INTEGER},
+      attentionCount = #{attentioncount,jdbcType=INTEGER},
+      remark = #{remark,jdbcType=VARCHAR}
+    where ID = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>
