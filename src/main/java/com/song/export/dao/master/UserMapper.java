@@ -1,6 +1,6 @@
-package com.song.export.dao;
+package com.song.export.dao.master;
 
-import com.song.export.model.bean.User;
+import com.song.export.model.bean.master.User;
 
 public interface UserMapper {
     int deleteByPrimaryKey(Long id);

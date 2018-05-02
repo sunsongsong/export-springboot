@@ -1,4 +1,4 @@
-package com.song.export.model.bean;
+package com.song.export.model.bean.master;
 
 import java.util.Date;
 

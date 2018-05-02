@@ -47,3 +47,18 @@ https://blog.csdn.net/sdlyjzh/article/details/79416607
 
 10.多数据源配置
 https://my.oschina.net/lengchuan/blog/876429
+
+11.Redis的配置
+https://www.cnblogs.com/nfcm/p/7833032.html
+    
+12.spring缓存注解的使用
+https://www.cnblogs.com/fashflying/p/6908028.html
+    底层采用zset存储
+        https://blog.csdn.net/u011271894/article/details/77969070
+        我的理解：先是一个zset存储所有的key,再是string存储key-value的值
+        这样能支持清除所有注解为value的缓存，不用一个一个的按key清除了
+               
+13.整合thymeleaf模板
+http://www.cnblogs.com/nfcm/p/7843935.html
+
+11111.全局异常处理 (需要 引入页面模板)
