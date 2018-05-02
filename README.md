@@ -57,8 +57,13 @@ https://www.cnblogs.com/fashflying/p/6908028.html
         https://blog.csdn.net/u011271894/article/details/77969070
         我的理解：先是一个zset存储所有的key,再是string存储key-value的值
         这样能支持清除所有注解为value的缓存，不用一个一个的按key清除了
-               
-13.整合thymeleaf模板
+       
+13.RabbitMQ整合
+http://www.ityouknow.com/springboot/2016/11/30/springboot(%E5%85%AB)-RabbitMQ%E8%AF%A6%E8%A7%A3.html
+
+14.阿里云
+
+14.整合thymeleaf模板
 http://www.cnblogs.com/nfcm/p/7843935.html
 
 11111.全局异常处理 (需要 引入页面模板)
