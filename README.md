@@ -40,4 +40,10 @@ https://blog.csdn.net/CoffeeAndIce/article/details/78707819
 https://www.cnblogs.com/shyroke/p/8045077.html
 
 9.日志配置
+https://blog.csdn.net/sdlyjzh/article/details/79416607
+排除spring boot中的logback的依赖包
+添加log4j2的依赖包
+如果用到异步日志的配置,需要添加disruptor包
 
+10.多数据源配置
+https://my.oschina.net/lengchuan/blog/876429
