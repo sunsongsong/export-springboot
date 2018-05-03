@@ -62,6 +62,9 @@ https://www.cnblogs.com/fashflying/p/6908028.html
 http://www.ityouknow.com/springboot/2016/11/30/springboot(%E5%85%AB)-RabbitMQ%E8%AF%A6%E8%A7%A3.html
 
 14.阿里云
+39.104.169.209
+root
+ss!
 
 14.整合thymeleaf模板
 http://www.cnblogs.com/nfcm/p/7843935.html
