@@ -6,6 +6,8 @@ import com.song.export.dao.slave.AppuserMapper;
 import com.song.export.model.bean.master.User;
 import com.song.export.model.bean.slave.Appuser;
 import com.song.export.model.common.JsonResult;
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiParam;
 import net.sf.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -13,6 +15,7 @@ import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -27,7 +30,7 @@ public class UserController {
      * 验证是否建立成功
      * @return
      */
-    @RequestMapping(value = "/hello")
+    @RequestMapping(value = "/hello",method = RequestMethod.GET)
     public String hello() {
         return "hello";
     }
@@ -36,7 +39,7 @@ public class UserController {
      * 获取json返回值
      * @return
      */
-    @RequestMapping(value = "/helloJson")
+    @RequestMapping(value = "/helloJson",method = RequestMethod.GET)
     public String helloJson() {
         return JsonResult.okResult("helloJson");
     }
@@ -48,7 +51,7 @@ public class UserController {
      * 验证获取多环境配置文件
      * @return
      */
-    @RequestMapping(value = "getPro")
+    @RequestMapping(value = "getPro",method = RequestMethod.GET)
     public String getProperties_name(){
         return JsonResult.okResult(properties_name);
     }
@@ -60,7 +63,7 @@ public class UserController {
      * 验证数据库配置是否正确
      * @return
      */
-    @RequestMapping("/getUsers")
+    @RequestMapping(value = "/getUsers",method = RequestMethod.GET)
     public String getDbType(){
         String sql = "select * from appuser";
         List<Map<String, Object>> list =  jdbcTemplate.queryForList(sql);
@@ -86,7 +89,7 @@ public class UserController {
      * 验证mybatis配置是否正确
      * @return
      */
-    @RequestMapping("/mybatis")
+    @RequestMapping(value = "/mybatis",method = RequestMethod.GET)
     public String mybatis(){
         User user = userMapper.selectByPrimaryKey(1L);
         return JsonResult.okResult(user);
@@ -99,7 +102,7 @@ public class UserController {
      * 验证多数据源的使用
      * @return
      */
-    @RequestMapping("/dataSource")
+    @RequestMapping(value = "/dataSource",method = RequestMethod.GET)
     public String dataSource(){
         User user = userMapper.selectByPrimaryKey(1L);
         Appuser appuser = appuserMapper.selectByPrimaryKey(1);
@@ -116,7 +119,7 @@ public class UserController {
      * 验证redis的使用
      * @return
      */
-    @RequestMapping("/redis")
+    @RequestMapping(value = "/redis",method = RequestMethod.GET)
     public String redis(){
         long id = 1L;
         String key = "user:"+id;
@@ -143,19 +146,19 @@ public class UserController {
      * key默认不写:自动生成key 类名+方法名+参数
      * @return
      */
-    @RequestMapping("/getUser")
+    @RequestMapping(value = "/getUser" ,method = RequestMethod.GET)
     @Cacheable(value="userCache",key="'id_'+#id")
-    public User getUser(@RequestParam(required=true)Long id) {
+    public String getUser(@RequestParam(required=true)Long id) {
         User user=userMapper.selectByPrimaryKey(id);
         System.out.println("若下面没出现“无缓存的时候调用”字样且能打印出数据表示测试成功");
         System.out.println(JSONObject.fromObject(user));
-        return user;
+        return JsonResult.okResult(user);
     }
     /**
      * 测试delete 自动根据方法生成缓存--自定义key
      * @return
      */
-    @RequestMapping("/deleteUser")
+    @RequestMapping(value = "/deleteUser",method = RequestMethod.GET)
     @CacheEvict(value ="userCache",key="'id_'+#id")
     public String deleteUser(@RequestParam(required=true)Long id) {
         User user=userMapper.selectByPrimaryKey(id);
@@ -169,19 +172,19 @@ public class UserController {
      * 测试get 自动根据方法生成缓存--自定义key 类名+方法名+参数
      * @return
      */
-    @RequestMapping("/getUserBykey")
+    @RequestMapping(value = "/getUserBykey",method = RequestMethod.GET)
     @Cacheable(value ="userCache",key="#root.targetClass.getName() + #root.methodName + #id")
-    public User getUserBykey(@RequestParam(required=true)Long id) {
+    public String getUserBykey(@RequestParam(required=true)Long id) {
         User user=userMapper.selectByPrimaryKey(id);
         System.out.println("若下面没出现“无缓存的时候调用”字样且能打印出数据表示测试成功");
-        return user;
+        return JsonResult.okResult(user);
     }
 
     /**
      * 测试get 自动根据方法生成缓存--自定义key 类名+方法名+参数
      * @return
      */
-    @RequestMapping("/getUserBykeyMap")
+    @RequestMapping(value = "/getUserBykeyMap",method = RequestMethod.GET)
     @Cacheable(value ="userCache",key="#root.targetClass.getName() + #root.methodName + #id")
     public String getUserBykeyMap(@RequestParam(required=true)Long id) {
         User user=userMapper.selectByPrimaryKey(id);
@@ -212,6 +215,17 @@ public class UserController {
      *  查询结果返回值为null 会自动不加入缓存
      *
      */
+
+    /**
+     * 整合swagger测试
+     * @param name
+     * @return
+     */
+    @RequestMapping(value = "/testSwagger",method = RequestMethod.GET)
+    @ApiOperation(value = "测试swagger", notes = "测试swagger")
+    public String testSwagger(@ApiParam(value = "姓名", required = true) @RequestParam String name){
+        return JsonResult.okResult("姓名：" + name);
+    }
 
 
 
