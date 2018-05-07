@@ -4,6 +4,10 @@ import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
+/**
+ * CountDownLatch实现多线程执行完毕，再执行别的线程
+ *      https://blog.csdn.net/zhutulang/article/details/48504487
+ */
 public class useCountDownLatch {
     public static void main2(String[] args) throws InterruptedException {
         int threadNum = 3;//线程数目
@@ -34,6 +38,10 @@ public class useCountDownLatch {
         latchTest();
     }
 
+    /**
+     * 并发测试
+     * @throws InterruptedException
+     */
     private static void latchTest() throws InterruptedException {
         int poolSize = 100;
         final CountDownLatch start = new CountDownLatch(1);
