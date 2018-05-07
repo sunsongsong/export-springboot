@@ -58,8 +58,8 @@ https://www.cnblogs.com/fashflying/p/6908028.html
         我的理解：先是一个zset存储所有的key,再是string存储key-value的值
         这样能支持清除所有注解为value的缓存，不用一个一个的按key清除了
        
-13.阿里云
-39.104.169.209
+13.阿里云39.104.169.209
+
 root
 ss!
 
