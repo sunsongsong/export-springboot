@@ -5,3 +5,22 @@ ss805459...
 
 1.Redis安装
 https://blog.csdn.net/qq_20989105/article/details/76390367
+
+
+
+########以下mysql安装################
+    安装教程：
+    https://www.linuxidc.com/Linux/2017-12/149614.htm
+    常见问题：
+        （1）ERROR 1819 (HY000): Your password does not satisfy the current policy requirements
+        密码太弱，更改密码等级
+            进入mysql后：([root@sunsong ~]# mysql -u root -p)
+            set global validate_password_policy=0;
+            set global validate_password_length=4;
+            然后再设置密码
+        （2）Host '113.143.180.191' is not allowed to connect to this MySQL server
+        远程连接没有权限
+         GRANT ALL PRIVILEGES ON *.* TO 'root'@'%' IDENTIFIED BY '123456' WITH GRANT OPTION;
+
+########以上mysql安装################
+
