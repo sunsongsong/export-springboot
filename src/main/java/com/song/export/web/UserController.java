@@ -131,7 +131,7 @@ public class UserController {
         if(user == null){
             msg = "缓存中没找到";
             user = userMapper.selectByPrimaryKey(id);
-            redisService.set(key,user,5L);
+            redisService.set(key,user,500L);
         }else{
             msg = "缓存中找到了";
         }

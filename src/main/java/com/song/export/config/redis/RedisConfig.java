@@ -18,7 +18,7 @@ import org.springframework.data.redis.serializer.Jackson2JsonRedisSerializer;
 import java.lang.reflect.Method;
 
 @Configuration
-@EnableCaching
+@EnableCaching//@EnableCaching注解是spring framework中的注解驱动的缓存管理功能
 public class RedisConfig extends CachingConfigurerSupport {
 
     @Bean

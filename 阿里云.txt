@@ -3,11 +3,93 @@ sunsongsong
 805459487@qq.com
 ss805459...
 
-1.Redis安装
-https://blog.csdn.net/qq_20989105/article/details/76390367
+文件目录：
+jdk:/my/jvm/jdk1.8.0_171
+rebbitmq:/my/rabbitmq_server-3.6.9/
+redis:/usr/local/redis
 
 
+常用命令：
+1.验证centos系统版本的位数
+[root@sunsong /]# uname -i
+2.将jvm文件夹移动到自己的my文件下
+[root@sunsong lib]# mv jvm/ /my/
+3.查找文件
+find / -name isoc
+4.解压
+tar -zxvf app_20180418.tar.gz
+5.添加权限
+chmod -R 775 .
+cd -
+6.tomcat启动
+./catalina.sh run
 
+jdk的安装
+1.创建目录
+[root@sunsong /]# mkdir software
+2.移动jdk到software目录下
+[root@sunsong /]# mv jdk-8u171-linux-x64.tar.gz /software/
+3.解压jdk
+[root@sunsong software]# tar -zxvf jdk-8u171-linux-x64.tar.gz -C /usr/lib/jvm/
+4.设置环境变量
+[root@sunsong software]# vi /etc/profile
+在最前面添加
+export JAVA_HOME=/usr/lib/jvm/jdk1.8.0_171
+export JRE_HOME=${JAVA_HOME}/jre
+export CLASSPATH=.:${JAVA_HOME}/lib:${JRE_HOME}/lib
+export  PATH=${JAVA_HOME}/bin:$PATH
+5.执行配置文件
+[root@sunsong software]# source /etc/profile
+6.检查是否安装成功
+[root@sunsong software]# java -version
+
+rabbitmq的安装
+https://blog.csdn.net/qq_34021712/article/details/72567786
+1.安装Erlang环境
+	1)安装GCC GCC-C++ Openssl等模块,安装过就不需要安装了
+		yum -y install make gcc gcc-c++ kernel-devel m4 ncurses-devel openssl-devel
+	2)安装ncurses
+		yum -y install ncurses-devel
+	3)安装erlang环境
+		下载
+		wget http://erlang.org/download/otp_src_18.2.1.tar.gz
+		解压
+		tar xvfz otp_src_18.2.1.tar.gz
+		执行配置
+		./configure
+		安装
+		make install
+2.安装RabbitMQ
+	1)下载rabbitmq-server-3.6.9.tar.xz
+		wget http://www.rabbitmq.com/releases/rabbitmq-server/v3.6.9/rabbitmq-server-generic-unix-3.6.9.tar.xz
+	2)对于下载xz包进行解压，首先先下载xz压缩工具：
+		yum install xz
+	3)对rabbitmq包进行解压：
+		xz -d xz -d rabbitmq-server-generic-unix-3.6.9.tar.xz
+		tar -xvf rabbitmq-server-generic-unix-3.6.9.tar -C /my/
+	4)这种下载的方式解压后直接可以使用，无需再编译安装；
+	进入到rabbit文件内，其命令文件存在于sbin文件夹下，因此需要将sbin文件夹的路径添加到PATH中：修改/etc/profile
+		export PATH=/usr/local/rabbitmq/sbin:$PATH
+		执行source /etc/profile使得PATH路径更新，rabbitMQ安装成功。
+	5)随后启用MQ管理方式：
+		rabbitmq-plugins enable rabbitmq_management   #启动后台管理
+		rabbitmq-server -detached   #后台运行rabbitmq
+	6)设置端口号，可供外部访问：（阿里云添加端口）
+		iptables -I INPUT -p tcp --dport 15672 -j ACCEPT
+
+	7) 添加用户
+		[root@sunsong sbin]# ./rabbitmqctl add_user admin admin
+	8)添加用户和权限
+		默认网页guest用户是不允许访问的，需要增加一个用户修改一下权限，代码如下：
+		添加用户:rabbitmqctl add_user admin admin
+		添加权限:rabbitmqctl set_permissions -p "/" admin ".*" ".*" ".*"
+		修改用户角色:rabbitmqctl set_user_tags admin administrator
+	9)访问	http://39.104.169.209:15672 admin admin
+
+3.Redis的安装
+    https://blog.csdn.net/qq_20989105/article/details/76390367
+
+4.mysql的安装
 ########以下mysql安装################
     安装教程：
     https://www.linuxidc.com/Linux/2017-12/149614.htm
@@ -23,4 +105,3 @@ https://blog.csdn.net/qq_20989105/article/details/76390367
          GRANT ALL PRIVILEGES ON *.* TO 'root'@'%' IDENTIFIED BY '123456' WITH GRANT OPTION;
 
 ########以上mysql安装################
-

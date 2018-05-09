@@ -58,19 +58,27 @@ https://www.cnblogs.com/fashflying/p/6908028.html
         我的理解：先是一个zset存储所有的key,再是string存储key-value的值
         这样能支持清除所有注解为value的缓存，不用一个一个的按key清除了
        
-13.阿里云39.104.169.209
-
-root
-ss!
+13.阿里云39.104.169.209rootss!
 
 14.整合swagger接口
 
 14.RabbitMQ整合
 http://www.ityouknow.com/springboot/2016/11/30/springboot(%E5%85%AB)-RabbitMQ%E8%AF%A6%E8%A7%A3.html
+https://www.cnblogs.com/boshen-hzb/p/6841982.html
+     常见错误：
+        (reply-code=404, reply-text=NOT_FOUND - no queue 'helloQueue' in vhost '/', class-id=50, method-id=10)
+        缺少 helloQueue队列了,需要手动添加
+        https://blog.csdn.net/a286352250/article/details/53158667
 
+15.mysql数据库安装
+    https://jingyan.baidu.com/article/a378c9609eb652b3282830fd.html
+    
 11111.整合thymeleaf模板
 http://www.cnblogs.com/nfcm/p/7843935.html
 
 11111.全局异常处理 (需要 引入页面模板)
 
+11111.验证码
+
+11111.文件导出
 
