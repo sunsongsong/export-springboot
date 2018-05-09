@@ -247,4 +247,9 @@
       remark = #{remark,jdbcType=VARCHAR}
     where ID = #{id,jdbcType=BIGINT}
   </update>
+  <select id="queryAll" resultType="com.song.export.model.bean.master.User">
+    select
+    <include refid="Base_Column_List" />
+    from user
+  </select>
 </mapper>

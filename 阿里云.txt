@@ -23,6 +23,9 @@ chmod -R 775 .
 cd -
 6.tomcat启动
 ./catalina.sh run
+7.更改用户密码
+[root@172 ~]# passwd
+更改用户 root 的密码
 
 jdk的安装
 1.创建目录
@@ -86,8 +89,19 @@ https://blog.csdn.net/qq_34021712/article/details/72567786
 		修改用户角色:rabbitmqctl set_user_tags admin administrator
 	9)访问	http://39.104.169.209:15672 admin admin
 
+    重启系统需要重启 rabbitMQ
+        https://blog.csdn.net/myfancysky/article/details/50734933
+    [root@iZ28jyxu47dZ sbin]# ./rabbitmqctl start_app
+    [root@iZ28jyxu47dZ sbin]# ./rabbitmq-plugins enable rabbitmq_management
+    [root@iZ28jyxu47dZ sbin]# ./rabbitmqctl stop
+    [root@iZ28jyxu47dZ sbin]# ./rabbitmq-server start &
+
+
 3.Redis的安装
     https://blog.csdn.net/qq_20989105/article/details/76390367
+
+    重启系统需要重启 redis
+    [root@sunsong redis]# ./bin/redis-server ./redis.conf
 
 4.mysql的安装
 ########以下mysql安装################

@@ -3,12 +3,16 @@ package com.song.export.web;
 import com.song.export.cache.RedisService;
 import com.song.export.dao.master.UserMapper;
 import com.song.export.dao.slave.AppuserMapper;
+import com.song.export.enums.RedisPrefixEnum;
 import com.song.export.model.bean.master.User;
 import com.song.export.model.bean.slave.Appuser;
 import com.song.export.model.common.JsonResult;
+import com.song.export.util.verificationCode.ValidatCodeUtils;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 import net.sf.json.JSONObject;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.cache.annotation.CacheEvict;
@@ -19,6 +23,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import java.util.*;
 
 
@@ -26,6 +32,7 @@ import java.util.*;
 @RequestMapping(value = "/user", produces = "application/json;charset=utf-8")
 public class UserController {
 
+//    public static final Logger logger = Logger.getLogger(UserController.class);
     /**
      * 验证是否建立成功
      * @return
@@ -226,6 +233,78 @@ public class UserController {
     public String testSwagger(@ApiParam(value = "姓名", required = true) @RequestParam String name){
         return JsonResult.okResult("姓名：" + name);
     }
+
+    /**
+     * 测试异常
+     * @return
+     */
+    @RequestMapping(value = "/e",method = RequestMethod.GET)
+    public String e(){
+        int num = 10 / 0;
+        return JsonResult.okResult("OK");
+    }
+
+    /**
+     * 全局测试异常
+     *     只需要增加全局异常处理 GlobalExceptionHandler
+     * @return
+     */
+    @RequestMapping(value = "/exception",method = RequestMethod.GET)
+    public String exception(){
+        int num = 10 / 0;
+        return JsonResult.okResult("OK");
+    }
+
+    /**
+     * 生成验证码图片
+     */
+    @RequestMapping(value = "/getVerifyImge", method = RequestMethod.GET)
+    public void getVerifyImge(HttpServletRequest request, HttpServletResponse response) {
+        try {
+            ValidatCodeUtils.create(response.getOutputStream());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    private static Logger logger = LoggerFactory.getLogger(UserController.class);
+    /**
+     * 生成验证码Base64编码
+     * 返回验证码的编码和生产id
+     */
+    @RequestMapping(value = "/getVerify", method = RequestMethod.GET)
+    public String getVerify() {
+        try {
+            Map map = ValidatCodeUtils.createImage();
+            //增加缓存
+            String code = map.get("code").toString();
+            String uuid = ValidatCodeUtils.generateUUID();
+            String key = RedisPrefixEnum.VERIFY_CODE.getPrefix() + uuid;
+            redisService.set(key,code,300l);
+            logger.info("VerifyCode:key="+key);
+            logger.info("VerifyCode:code="+code);
+
+            Map resultMap = new HashMap();
+            resultMap.put("image",map.get("image"));
+            resultMap.put("uuid",uuid);
+            return JsonResult.okResult(resultMap);
+        } catch (Exception e) {
+            logger.error("获取验证码失败", e);
+            e.printStackTrace();
+        }
+        return JsonResult.errorResult(-1,"获取验证码失败");
+    }
+    //前台获取
+    /*getimgcode() {
+        this.http.get("/user/getVerify").subscribe((data: any) => {
+            if (data) {
+                let imageSrc = data.image;
+                this.user.uuid = data.uuid;
+                this.verifyImg.nativeElement.src = "data:image/png;base64," + imageSrc;
+            }
+        });
+    }*/
+
 
 
 
