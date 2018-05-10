@@ -1,4 +1,4 @@
-package com.song.export.util.verificationCode;
+package com.song.export.util.validat;
 
 import com.github.bingoohuang.patchca.background.BackgroundFactory;
 import com.github.bingoohuang.patchca.color.ColorFactory;

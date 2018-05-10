@@ -80,6 +80,7 @@
     增加全局异常处理类：GlobalExceptionHandler
 
 18.验证码
+    getVerify
 
-11111.文件导出
+19.文件导出
 

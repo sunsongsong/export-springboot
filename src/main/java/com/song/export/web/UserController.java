@@ -7,7 +7,7 @@ import com.song.export.enums.RedisPrefixEnum;
 import com.song.export.model.bean.master.User;
 import com.song.export.model.bean.slave.Appuser;
 import com.song.export.model.common.JsonResult;
-import com.song.export.util.verificationCode.ValidatCodeUtils;
+import com.song.export.util.validat.ValidatCodeUtils;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 import net.sf.json.JSONObject;
