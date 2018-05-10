@@ -9,7 +9,6 @@ import com.github.bingoohuang.patchca.service.Captcha;
 import com.github.bingoohuang.patchca.text.renderer.BestFitTextRenderer;
 import com.github.bingoohuang.patchca.utils.encoder.EncoderHelper;
 import com.github.bingoohuang.patchca.word.RandomWordFactory;
-import sun.misc.BASE64Encoder;
 
 import javax.imageio.ImageIO;
 import java.awt.*;
@@ -178,8 +177,8 @@ public class ValidatCodeUtils {
 		BufferedImage image = captcha.getImage();
 		ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
 		ImageIO.write(image, "png", outputStream);
-		BASE64Encoder encoder = new BASE64Encoder();
-		map.put("image", encoder.encode(outputStream.toByteArray()));
+		String base64 = java.util.Base64.getEncoder().encodeToString((outputStream.toByteArray()));
+		map.put("image", base64);
 		return map;
 	}
 

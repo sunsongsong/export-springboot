@@ -32,7 +32,6 @@ import java.util.*;
 @RequestMapping(value = "/user", produces = "application/json;charset=utf-8")
 public class UserController {
 
-//    public static final Logger logger = Logger.getLogger(UserController.class);
     /**
      * 验证是否建立成功
      * @return
