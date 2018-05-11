@@ -28,9 +28,22 @@ import java.util.List;
 /**
  * 创建word文档的基类
  */
-public class CreateWordUtilBase {
+public class ExportWordUtilBase {
 
     public static ObjectFactory factory = new ObjectFactory();
+
+    /**
+     * 判断字符是否包含特殊字符
+     * @param str
+     * @return
+     */
+    public static Boolean containsSpecialChar(String str){
+        boolean flag = false;
+        if(str.contains("{") || str.contains("}")){
+            flag = true;
+        }
+        return flag;
+    }
 
     /**
      * 目录设置
@@ -320,7 +333,7 @@ public class CreateWordUtilBase {
                              Part sourcePart, HttpServletRequest request, String logoName) throws Exception {
 
         Hdr hdr = factory.createHdr();
-        String packPath = CreateWordUtilBase.class.getClassLoader().getResource("").getPath();
+        String packPath = ExportWordUtilBase.class.getClassLoader().getResource("").getPath();
         String logoPath = packPath + "/static/picture/" +logoName;
         File file = new File(logoPath);
         java.io.InputStream is = new java.io.FileInputStream(file);

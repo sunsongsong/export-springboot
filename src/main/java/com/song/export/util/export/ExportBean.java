@@ -1,18 +1,18 @@
-package com.song.export.util.export.word;
+package com.song.export.util.export;
 
 /**
- * word内容的bean对象,测试用
+ * 导出内容的bean对象,测试用
  */
-public class WordContentBean {
+public class ExportBean {
     private String title;
     private String pushTime;
     private String content;
     private String url;
 
-    public WordContentBean() {
+    public ExportBean() {
     }
 
-    public WordContentBean(String title, String pushTime, String content, String url) {
+    public ExportBean(String title, String pushTime, String content, String url) {
         this.title = title;
         this.pushTime = pushTime;
         this.content = content;
