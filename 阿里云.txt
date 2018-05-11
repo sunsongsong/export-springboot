@@ -119,3 +119,5 @@ https://blog.csdn.net/qq_34021712/article/details/72567786
          GRANT ALL PRIVILEGES ON *.* TO 'root'@'%' IDENTIFIED BY '123456' WITH GRANT OPTION;
 
 ########以上mysql安装################
+
+5.jenkins/maven/git安装

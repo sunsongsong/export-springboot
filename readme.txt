@@ -83,4 +83,21 @@
     getVerify
 
 19.文件导出
+    util包下
+
+20.定时任务
+    @Scheduled
+
+21.邮件服务
+    mail
+
+22.mongodb
+
+23.jenkins/maven/git安装
+
+
+
+
+
+
 
