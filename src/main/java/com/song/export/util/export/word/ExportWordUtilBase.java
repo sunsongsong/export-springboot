@@ -1,5 +1,6 @@
 package com.song.export.util.export.word;
 
+import com.song.export.util.string.SunStringUtil;
 import org.docx4j.XmlUtils;
 import org.docx4j.dml.wordprocessingDrawing.Inline;
 import org.docx4j.jaxb.Context;
@@ -38,11 +39,14 @@ public class ExportWordUtilBase {
      * @return
      */
     public static Boolean containsSpecialChar(String str){
-        boolean flag = false;
+        System.out.println("str = "+str);
         if(str.contains("{") || str.contains("}")){
-            flag = true;
+            return true;
         }
-        return flag;
+        if(SunStringUtil.HasChineseChar(str)){
+            return true;
+        }
+        return false;
     }
 
     /**

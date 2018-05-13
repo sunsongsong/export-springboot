@@ -10,7 +10,9 @@ import org.docx4j.wml.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileReader;
 import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.List;
@@ -22,8 +24,54 @@ public class ExportWordUtil extends ExportWordUtilBase {
         ExportBean bean = new ExportBean("开会了",
                 "20180510",
                 "中共中央国务院举行春节团拜会 习近平发表讲话",
-                "http://news.ifeng.com/a/20180214/56059106_0.shtml");
+                "http://invest.hket.com/article/2062998/樂視去年蝕138億差絕A股 中港虧本王比拼");
         for(int i=0;i<10;i++){
+            resultList.add(bean);
+        }
+        return resultList;
+    }
+
+    public static List<ExportBean> initDataUrl(){
+        List<ExportBean> resultList = new ArrayList<>();
+
+        /** 要读取的文件路径，可以自己修改成自己的路径 */
+        /**
+         * 读取文件数据
+         */
+        //String url = "F:\\kaiyuan\\export-springboot\\src\\main\\resources\\问题链接.txt";
+        String url = "C:\\Users\\Administrator\\Desktop\\问题链接.txt";
+        File file = new File(url);
+        if (!file.exists() || file.isDirectory())
+        {
+            System.out.println("文件不存在！");
+            return null;
+        }
+        StringBuffer sb = null;
+        BufferedReader br;
+        try
+        {
+            br = new BufferedReader(new FileReader(file));
+            String temp = null;
+            sb = new StringBuffer();
+            temp = br.readLine();
+            while (temp != null)
+            {
+                sb.append(temp+"===");
+                temp = br.readLine();
+            }
+        }
+        catch (Exception e)
+        {
+            e.printStackTrace();
+        }
+        /** 读取的文件内容 */
+        String info = sb.toString();
+        String infos[] = info.split("===");
+        for(int i=0;i<infos.length;i++){
+            ExportBean bean = new ExportBean("开会了",
+                    "20180510",
+                    "中共中央国务院举行春节团拜会 习近平发表讲话",
+                    infos[i]);
             resultList.add(bean);
         }
         return resultList;
@@ -36,7 +84,7 @@ public class ExportWordUtil extends ExportWordUtilBase {
      */
     public static void createWord(HttpServletRequest request, HttpServletResponse response) throws Exception {
         //初始化需要导出的数据
-        List<ExportBean> dataList = initData();
+        List<ExportBean> dataList = initDataUrl();
 
         WordprocessingMLPackage wordMLPackage = createPackage(request,dataList);
 

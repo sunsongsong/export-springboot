@@ -53,7 +53,7 @@ public class LearnExtendsRecursiveTask extends RecursiveTask<Long>{
         System.out.println(Arrays.toString(array));
 
         // 1. 创建任务
-        LearnExtendsRecursiveTask LearnExtendsRecursiveTask = new LearnExtendsRecursiveTask(array, 0, array.length - 1);
+        LearnExtendsRecursiveTask learnExtendsRecursiveTask = new LearnExtendsRecursiveTask(array, 0, array.length - 1);
 
         long begin = System.currentTimeMillis();
 
@@ -61,10 +61,10 @@ public class LearnExtendsRecursiveTask extends RecursiveTask<Long>{
         ForkJoinPool forkJoinPool = new ForkJoinPool();
 
         // 3. 提交任务到线程池
-        forkJoinPool.submit(LearnExtendsRecursiveTask);
+        forkJoinPool.submit(learnExtendsRecursiveTask);
 
         // 4. 获取结果
-        Long result = LearnExtendsRecursiveTask.get();
+        Long result = learnExtendsRecursiveTask.get();
 
         long end = System.currentTimeMillis();
 
