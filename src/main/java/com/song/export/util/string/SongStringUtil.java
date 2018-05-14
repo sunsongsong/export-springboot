@@ -6,7 +6,7 @@ import java.util.regex.Pattern;
 /**
  * 自己得String工具类
  */
-public class SunStringUtil {
+public class SongStringUtil {
 
     /**
      * 验证字符串中是否含着中文

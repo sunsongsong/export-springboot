@@ -1,6 +1,6 @@
 package com.song.export.util.export.word;
 
-import com.song.export.util.string.SunStringUtil;
+import com.song.export.util.string.SongStringUtil;
 import org.docx4j.XmlUtils;
 import org.docx4j.dml.wordprocessingDrawing.Inline;
 import org.docx4j.jaxb.Context;
@@ -43,7 +43,7 @@ public class ExportWordUtilBase {
         if(str.contains("{") || str.contains("}")){
             return true;
         }
-        if(SunStringUtil.HasChineseChar(str)){
+        if(SongStringUtil.HasChineseChar(str)){
             return true;
         }
         return false;
