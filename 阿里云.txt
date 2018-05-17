@@ -26,6 +26,10 @@ cd -
 7.更改用户密码
 [root@172 ~]# passwd
 更改用户 root 的密码
+8.查看进程
+ps -ef | grep java   kill -9 pid 杀死进程
+9.查看cpu使用
+top -bn 1 -i -c
 
 jdk的安装
 1.创建目录

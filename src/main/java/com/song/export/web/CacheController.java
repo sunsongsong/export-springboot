@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class CacheController {
 
     @RequestMapping(value = "/test",method = RequestMethod.GET)
-    @SongCache(key1 = "testKey1",key2 = "testKey2",time = 60L)
+    @SongCache(key1 = "testKey1",key2 = "testKey2",time = 60L,cache = true)
     public String test() {
         return JsonResult.okResult("test");
     }

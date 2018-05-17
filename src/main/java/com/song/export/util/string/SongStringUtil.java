@@ -21,7 +21,7 @@ public class SongStringUtil {
     }
 
     public static void main(String[] args) {
-        String str = "http://www.metrodaily.hk/metro_news/亞視傳大地震-吳雨降職-否認老細閂水喉/";
+        String str = "視傳";
         System.out.println(HasChineseChar(str));
     }
 }
