@@ -12,12 +12,12 @@ import java.lang.reflect.Method;
 @SpringBootTest
 public class SongCacheTest {
 
-    @SongCache(key1 = "key1",key2 = "key2",time = 60L)
+    @SongCache(key = "key",value = "value",time = 60L)
     public static String test(){
         return "test";
     }
 
-    @SongCache(key1 = "key1",key2 = "key2")
+    @SongCache(key = "key",value = "value")
     public static String test1(){
         return "test1";
     }
@@ -41,10 +41,10 @@ public class SongCacheTest {
         for (Method method : ms) {
             if (method.isAnnotationPresent(SongCache.class)) {
                 SongCache songCache = method.getAnnotation(SongCache.class);
-                String key1 = songCache.key1();
-                String key2 = songCache.key2();
+                String key = songCache.key();
+                String value = songCache.value();
                 long time = songCache.time();
-                System.out.println("key1="+key1+",key2="+key2+",time="+time);
+                System.out.println("key="+key+",value="+value+",time="+time);
                 if(CanReturnCache(time)){
                     object = time;
                 }else{

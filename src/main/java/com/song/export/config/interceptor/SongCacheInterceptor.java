@@ -1,6 +1,14 @@
 package com.song.export.config.interceptor;
 
 import com.song.export.annotation.SongCache;
+import com.song.export.cache.RedisService;
+import net.sf.json.JSONObject;
+import org.springframework.amqp.core.Queue;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 import org.springframework.web.method.HandlerMethod;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
@@ -10,15 +18,11 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.PrintWriter;
 import java.lang.reflect.Method;
 
+@Component
 public class SongCacheInterceptor extends HandlerInterceptorAdapter {
-    /*
-    // 在执行目标方法之前执行
-    @Override
-    public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
-        System.out.println("preHandler");
-        System.out.println(handler.getClass());
-        return true;
-    }
+
+    @Autowired
+    RedisService redisService;
 
     // 执行目标方法之后执行
     @Override
@@ -26,11 +30,9 @@ public class SongCacheInterceptor extends HandlerInterceptorAdapter {
         System.out.println("postHandler");
     }
 
-    // 在请求已经返回之后执行
-    @Override
-    public void afterCompletion(HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex) throws Exception {
-        System.out.println("afterCompletion");
-    }*/
+
+
+
 
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
@@ -45,20 +47,33 @@ public class SongCacheInterceptor extends HandlerInterceptorAdapter {
             return true;
         }
         if (songCache.cache() == true) {//需要走缓存查询
-            String key = songCache.key1();
-            sendResponse(response,key);
+            String key = songCache.key();
+            String value = songCache.value();
+
+            Object content = redisService.get(value);
+
+            if(content == null){//如果缓存中没有，则直接走方法进行查询 --考虑在方法执行后,拿到返回值,加入缓存
+                return true;
+            }
+            sendResponse(response,content);
         }
         // 拦截之后应该返回公共结果, 这里没做处理
         return false;
     }
 
-    public void sendResponse(HttpServletResponse response,String content){
+    // 在请求已经返回之后执行
+    @Override
+    public void afterCompletion(HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex) throws Exception {
+        System.out.println("afterCompletion");
+    }
+
+    public void sendResponse(HttpServletResponse response,Object content){
         response.setCharacterEncoding("UTF-8");
         response.setContentType("application/json; charset=utf-8");
         PrintWriter out = null ;
         try{
             out = response.getWriter();
-            out.append(content);
+            out.append(JSONObject.fromObject(content)+"");
         }
         catch (Exception e){
             e.printStackTrace();

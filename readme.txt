@@ -95,8 +95,12 @@
 
 23.jenkins/maven/git安装
 
-24.自己封装个注解,应用于方法上的缓存
+24.自定义注解实现AOP    Aspect 和 Interceptor
+   (1)缓存注解
     思路：自定义切面,拿到注解类的数据,进行切面处理
+
+   (2)数据源切换 需要借用ThreadLocal
+
 
 25.freemaker模板导出
 

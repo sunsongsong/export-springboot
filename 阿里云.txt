@@ -1,7 +1,9 @@
 git:
 sunsongsong
-805459487@qq.com
-ss805459...
+@qq.com
+s805459...
+
+s!
 
 文件目录：
 jdk:/my/jvm/jdk1.8.0_171
@@ -101,7 +103,7 @@ https://blog.csdn.net/qq_34021712/article/details/72567786
     [root@iZ28jyxu47dZ sbin]# ./rabbitmq-server start &
 
 
-3.Redis的安装
+3.Redis的安装 s8054...
     https://blog.csdn.net/qq_20989105/article/details/76390367
 
     重启系统需要重启 redis
