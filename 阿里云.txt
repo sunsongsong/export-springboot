@@ -126,4 +126,10 @@ https://blog.csdn.net/qq_34021712/article/details/72567786
 
 ########以上mysql安装################
 
-5.jenkins/maven/git安装
+5.Zookeeper的安装
+    https://blog.csdn.net/king866/article/details/53992653
+
+
+6.jenkins/maven/git安装
+
+

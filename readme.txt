@@ -120,7 +120,7 @@
         记录日志 (前置通知 记录方法名和参数,后置通知 记录返回结果)
 
     Aop与缓存
-        参考AspectCache类
+        参考AspectCache类   主要应用于service层上
 
 
 
