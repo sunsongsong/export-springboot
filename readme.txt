@@ -101,10 +101,39 @@
 
    (2)数据源切换 需要借用ThreadLocal
 
+   说明：Filter和Interceptor 、Aspect区别
+        过滤器(Filter)：可以拿到原始的http请求，但是拿不到你请求的控制器和请求控制器中的方法的信息。
+            (1):implements Filter
+            (2):WebConfig 中配置
+
+        拦截器(Interceptor)：可以拿到你请求的控制器和方法，却拿不到请求方法的参数。
+            (1)implements HandlerInterceptor
+
+        切片(Aspect):可以拿到方法的参数，但是却拿不到http请求和响应的对象
+            (1)使用环绕通知,可以拿到对应的 前置通知、后置通知、异常通知、返回通知
+
+    具体应用：
+    Aop与缓存
+
+    Aop与日志
+        https://blog.csdn.net/czmchen/article/details/42392985
+        记录日志 (前置通知 记录方法名和参数,后置通知 记录返回结果)
+
+    Aop与缓存
+        参考AspectCache类
+
+
+
+
 
 25.freemaker模板导出
 
 26.泛型的使用
+
+27.redis分布式锁实现秒杀系统
+    https://mp.weixin.qq.com/s?__biz=MzA3ODQ0Mzg2OA==&mid=2649047660&idx=1&sn=95dbef28a16505971d2439b867cb8dfd&chksm=8753465fb024cf492aa8967acabaa854d22b9abca5cb060b9167de8f01bc8fc60102da4d68a4&scene=21#wechat_redirect
+
+28.java 并发包中lock的使用
 
 
 

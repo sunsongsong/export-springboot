@@ -1,6 +1,6 @@
 package com.song.export.config.interceptor;
 
-import com.song.export.annotation.SongCache;
+import com.song.export.annotation.SongCacheAnnotation;
 import com.song.export.cache.RedisService;
 import net.sf.json.JSONObject;
 import org.springframework.amqp.core.Queue;
@@ -23,7 +23,7 @@ public class SongCacheInterceptor extends HandlerInterceptorAdapter {
 
     @Autowired
     RedisService redisService;
-
+/*
     // 执行目标方法之后执行
     @Override
     public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler, ModelAndView modelAndView) throws Exception {
@@ -78,5 +78,5 @@ public class SongCacheInterceptor extends HandlerInterceptorAdapter {
         catch (Exception e){
             e.printStackTrace();
         }
-    }
+    }*/
 }

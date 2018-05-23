@@ -1,6 +1,6 @@
 package com.song.export;
 
-import com.song.export.annotation.SongCache;
+import com.song.export.annotation.SongCacheAnnotation;
 import org.junit.runner.RunWith;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
@@ -12,12 +12,12 @@ import java.lang.reflect.Method;
 @SpringBootTest
 public class SongCacheTest {
 
-    @SongCache(key = "key",value = "value",time = 60L)
+    @SongCacheAnnotation(key = "key",value = "value",time = 60L)
     public static String test(){
         return "test";
     }
 
-    @SongCache(key = "key",value = "value")
+    @SongCacheAnnotation(key = "key",value = "value")
     public static String test1(){
         return "test1";
     }
@@ -39,8 +39,8 @@ public class SongCacheTest {
         Class clazz = SongCacheTest.class;
         Method[] ms = clazz.getMethods();
         for (Method method : ms) {
-            if (method.isAnnotationPresent(SongCache.class)) {
-                SongCache songCache = method.getAnnotation(SongCache.class);
+            if (method.isAnnotationPresent(SongCacheAnnotation.class)) {
+                SongCacheAnnotation songCache = method.getAnnotation(SongCacheAnnotation.class);
                 String key = songCache.key();
                 String value = songCache.value();
                 long time = songCache.time();

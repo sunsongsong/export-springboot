@@ -1,6 +1,6 @@
 package com.song.export.web;
 
-import com.song.export.annotation.SongCache;
+import com.song.export.annotation.SongCacheAnnotation;
 import com.song.export.model.common.JsonResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class CacheController {
 
     @RequestMapping(value = "/test",method = RequestMethod.GET)
-    @SongCache(key = "testKey",value = "id_1",time = 60L,cache = true)
+    @SongCacheAnnotation(key = "testKey",value = "id_1",time = 60L,cache = true)
     public String test() {
         return JsonResult.okResult("test");
     }
